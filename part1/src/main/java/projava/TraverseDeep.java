@@ -7,7 +7,7 @@ public class TraverseDeep {
         int[][] map = {
                 {1, 1, 1, 1, 1, 1, 1},
                 {1, 0, 1, 0, 0, 0, 1},
-                {1, 0, 0, 0, 1, 1, 1},
+                {1, 0, 0, 0, 1, 0, 1},
                 {1, 0, 1, 0, 0, 2, 1},
                 {1, 1, 1, 1, 1, 1, 1}
         };
@@ -25,7 +25,7 @@ public class TraverseDeep {
 
         var stack = new ArrayDeque<Position>();
         stack.push(new Position(curX, curY));
-        for (Position p; (p = stack.pollFirst()) != null ;) {
+        for (Position p; (p = stack.pollLast()) != null ;) {
             switch (map[p.y()][p.x()]) {
                 case 0:
                     break;
