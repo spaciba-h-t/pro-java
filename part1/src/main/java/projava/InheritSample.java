@@ -7,15 +7,26 @@ public class InheritSample {
     static class User {
         String name;
 
+        User(String name) {
+            this.name = name;
+        }
+
         public String getName() {
             return name;
         }
+
     }
 
     static class Student extends User {
+        @Override
+        public String toString() {
+            return "%sの%s".formatted(getClass().getSimpleName(), getName());
+        }
+
         int score;
 
         Student(String name, int score) {
+            super(name);
             this.name = name;
             this.score = score;
         }
@@ -29,6 +40,7 @@ public class InheritSample {
         String subject;
 
         Teacher(String name, String subject) {
+            super(name);
             this.name = name;
             this.subject = subject;
         }
@@ -43,6 +55,7 @@ public class InheritSample {
                 new Teacher("hosoya", "Math"));
         for (var p : people) {
             System.out.println("こんにちは%sさん".formatted(p.getName()));
+            System.out.println(p.toString());
         }
     }
 }
