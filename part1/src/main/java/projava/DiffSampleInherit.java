@@ -20,37 +20,25 @@ public class DiffSampleInherit {
         f.setVisible(true);
     }
 
-    static BufferedImage lineImage() {
-        return new LineDrawer().createImage();
-    }
-
-    static BufferedImage rectImage() {
-        return  new RectDrawer().createImage();
-    }
-
-    static abstract class ImageDrawer {
-        BufferedImage createImage() {
-            var image = new BufferedImage(600, 400, BufferedImage.TYPE_INT_RGB);
+    @FunctionalInterface
+    interface ImageDrawer {
+        default BufferedImage createImage() {
+            var image = new BufferedImage(250, 200, BufferedImage.TYPE_INT_RGB);
             var graphics = image.createGraphics();
             draw(graphics);
             return image;
         }
 
-        abstract void draw(Graphics2D g);
+        void draw(Graphics2D g);
     }
 
-    static class LineDrawer extends ImageDrawer {
-        @Override
-        void draw(Graphics2D g) {
-            g.drawRect(10,10, 300, 400);
-        }
+    static BufferedImage lineImage() {
+        ImageDrawer drawer = g -> g.drawLine(10,10,220,180);
+        return drawer.createImage();
     }
 
-    static class RectDrawer extends  ImageDrawer {
-
-        @Override
-        void draw(Graphics2D g) {
-            g.drawRect(10,10,400,300);
-        }
+    static BufferedImage rectImage() {
+        ImageDrawer drawer = g -> g.drawLine(10,10,220,180);
+        return drawer.createImage();
     }
 }
