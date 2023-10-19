@@ -10,6 +10,13 @@
     <maven.compiler.target>17</maven.compiler.target>
   </properties>
 
+  <dependencies>
+    <dependency>
+      <groupId>one.cafebabe</groupId>
+      <artifactId>businessCalendar4j</artifactId>
+      <version>1.21</version>
+    </dependency>
+  </dependencies>
   <name>Archetype - part1</name>
   <url>http://maven.apache.org</url>
 </project>
